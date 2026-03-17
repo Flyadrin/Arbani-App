@@ -7,25 +7,118 @@
   --black: #0A0A0A;
   --black-card: #141414;
   --black-border: #242424;
+  --sat: env(safe-area-inset-top, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+  --sal: env(safe-area-inset-left, 0px);
+  --sar: env(safe-area-inset-right, 0px);
 }
 
-* {
+*, *::before, *::after {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  height: 100%;
+  overscroll-behavior: none;
 }
 
 body {
   background-color: var(--black);
   color: #ffffff;
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-lato), sans-serif;
+  overscroll-behavior-y: none;
+  -webkit-overflow-scrolling: touch;
 }
 
+/* Phone app shell */
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  max-width: 430px;
+  margin: 0 auto;
+  position: relative;
+  background: var(--black);
+  overflow: hidden;
+}
+
+/* Desktop: show phone frame */
+@media (min-width: 480px) {
+  body {
+    background: #050505;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100dvh;
+  }
+
+  .app-shell {
+    height: 92dvh;
+    max-height: 900px;
+    border-radius: 44px;
+    box-shadow:
+      0 0 0 10px #1a1a1a,
+      0 0 0 12px #0d0d0d,
+      0 40px 120px rgba(0,0,0,0.8),
+      inset 0 0 0 1px rgba(255,255,255,0.06);
+    overflow: hidden;
+  }
+}
+
+/* Status bar */
+.status-bar {
+  height: max(var(--sat), 44px);
+  flex-shrink: 0;
+  background: var(--black);
+  padding-top: var(--sat);
+}
+
+/* Bottom tab bar */
+.tab-bar {
+  flex-shrink: 0;
+  padding-bottom: max(var(--sab), 8px);
+  background: rgba(10,10,10,0.97);
+  border-top: 1px solid #1e1e1e;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Scrollable screen area */
+.screen-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+}
+
+/* Touch tap states */
+.tap-target {
+  cursor: pointer;
+  transition: opacity 0.12s ease, transform 0.12s ease;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.tap-target:active {
+  opacity: 0.65;
+  transform: scale(0.96);
+}
+
+.card-hover {
+  transition: all 0.2s ease;
+}
+
+.card-hover:active {
+  transform: scale(0.97);
+  opacity: 0.85;
+}
+
+/* Testimonial scroll */
 @keyframes slide-left {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .testimonial-track {
@@ -34,8 +127,16 @@ body {
   width: max-content;
 }
 
-.testimonial-track:hover {
+.testimonial-track:active {
   animation-play-state: paused;
+}
+
+/* Gold text */
+.gold-text {
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .gold-gradient {
@@ -45,37 +146,25 @@ body {
   background-clip: text;
 }
 
-.gold-border {
-  border-color: var(--gold);
-}
-
-.gold-bg {
-  background-color: var(--gold);
-}
-
-.card-hover {
-  transition: all 0.3s ease;
-}
-
-.card-hover:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 32px rgba(201, 168, 76, 0.25);
-}
-
-/* Scrollbar styling */
+/* Hide scrollbars */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 0;
+  display: none;
 }
 
-::-webkit-scrollbar-track {
-  background: var(--black);
+/* Input focus */
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--gold) !important;
+  box-shadow: 0 0 0 2px rgba(201,168,76,0.15);
 }
 
-::-webkit-scrollbar-thumb {
-  background: var(--gold-dark);
-  border-radius: 3px;
+/* Page entry animation */
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--gold);
+.page-in {
+  animation: pageIn 0.25s ease forwards;
 }

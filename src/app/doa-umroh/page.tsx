@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Navbar from "@/components/Navbar";
+import AppShell from "@/components/AppShell";
 import { useState } from "react";
 
 const doaCategories = [
@@ -161,46 +161,21 @@ export default function DoaUmrohPage() {
   const selectedCategory = doaCategories.find((c) => c.id === activeCategory);
 
   return (
-    <div className="min-h-screen" style={{ background: "#0A0A0A" }}>
-      <Navbar />
-
-      {/* Hero */}
-      <section className="relative px-4 pt-12 pb-8 text-center overflow-hidden">
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: "radial-gradient(ellipse 60% 40% at 50% 0%, rgba(201,168,76,0.1) 0%, transparent 70%)",
-          }}
-        />
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-[#C9A84C] transition-colors mb-6"
-        >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <AppShell>
+      {/* Page header */}
+      <div className="px-4 pt-4 pb-3 flex items-center gap-3" style={{ borderBottom: "1px solid #1a1a1a" }}>
+        <Link href="/" className="tap-target w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: "#141414" }}>
+          <svg className="w-5 h-5" fill="none" stroke="#C9A84C" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
-          Kembali
         </Link>
-        <p className="text-xs tracking-widest uppercase mb-2" style={{ color: "#C9A84C" }}>
-          Arbani Tour
-        </p>
-        <h1
-          className="text-3xl md:text-4xl font-black mb-3 tracking-wide"
-          style={{
-            fontFamily: "var(--font-cinzel)",
-            background: "linear-gradient(135deg, #A07830, #C9A84C, #E8C96D)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-          }}
-        >
-          DOA-DOA UMROH
-        </h1>
-        <p className="text-gray-400 max-w-md mx-auto text-sm leading-relaxed">
-          Panduan lengkap doa dan bacaan selama ibadah umroh. Lengkap dengan
-          tulisan Arab, latin, dan terjemahan.
-        </p>
-      </section>
+        <div>
+          <h1 className="text-base font-black tracking-wide" style={{ fontFamily: "var(--font-cinzel)", color: "#C9A84C" }}>
+            DOA-DOA UMROH
+          </h1>
+          <p className="text-[10px] text-gray-500">Arab · Latin · Terjemahan</p>
+        </div>
+      </div>
 
       {/* Category tabs - horizontal scroll */}
       <div className="px-4 mb-6 overflow-x-auto pb-2">
@@ -226,7 +201,7 @@ export default function DoaUmrohPage() {
       </div>
 
       {/* Duas */}
-      <section className="px-4 pb-12 max-w-3xl mx-auto">
+      <div className="px-4 pb-6">
         {selectedCategory && (
           <div>
             <h2
@@ -359,7 +334,7 @@ export default function DoaUmrohPage() {
             </div>
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </AppShell>
   );
 }

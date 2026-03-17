@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import AppShell from "@/components/AppShell";
 
 export default function LoginPage() {
   const [mode, setMode] = useState<"login" | "register">("login");
@@ -33,68 +34,60 @@ export default function LoginPage() {
 
   if (submitted) {
     return (
-      <div
-        className="min-h-screen flex flex-col items-center justify-center px-4 text-center"
-        style={{ background: "#0A0A0A" }}
-      >
-        <div
-          className="w-full max-w-md rounded-3xl p-10"
-          style={{ background: "#141414", border: "1px solid #242424" }}
-        >
-          <div className="text-5xl mb-4">✅</div>
-          <h2
-            className="text-xl font-bold mb-2"
-            style={{ fontFamily: "var(--font-cinzel)", color: "#C9A84C" }}
+      <AppShell>
+        <div className="flex flex-col items-center justify-center h-full px-4 text-center">
+          <div
+            className="w-full rounded-3xl p-10"
+            style={{ background: "#141414", border: "1px solid #242424" }}
           >
-            {mode === "login" ? "Berhasil Masuk!" : "Akun Terdaftar!"}
-          </h2>
-          <p className="text-gray-400 text-sm mb-6">
-            {mode === "login"
-              ? "Selamat datang kembali di Arbani Tour."
-              : "Terima kasih telah bergabung bersama Arbani Tour. Tim kami akan segera menghubungi Anda."}
-          </p>
-          <Link
-            href="/"
-            className="inline-block px-8 py-3 rounded-full font-semibold text-sm transition-all hover:scale-105"
-            style={{
-              background: "linear-gradient(135deg, #A07830, #C9A84C)",
-              color: "#0A0A0A",
-            }}
-          >
-            Kembali ke Beranda
-          </Link>
+            <div className="text-5xl mb-4">✅</div>
+            <h2
+              className="text-xl font-bold mb-2"
+              style={{ fontFamily: "var(--font-cinzel)", color: "#C9A84C" }}
+            >
+              {mode === "login" ? "Berhasil Masuk!" : "Akun Terdaftar!"}
+            </h2>
+            <p className="text-gray-400 text-sm mb-6">
+              {mode === "login"
+                ? "Selamat datang kembali di Arbani Tour."
+                : "Terima kasih telah bergabung. Tim kami akan segera menghubungi Anda."}
+            </p>
+            <Link
+              href="/"
+              className="inline-block px-8 py-3 rounded-full font-semibold text-sm tap-target"
+              style={{
+                background: "linear-gradient(135deg, #A07830, #C9A84C)",
+                color: "#0A0A0A",
+              }}
+            >
+              Kembali ke Beranda
+            </Link>
+          </div>
         </div>
-      </div>
+      </AppShell>
     );
   }
 
   return (
-    <div
-      className="min-h-screen flex flex-col items-center justify-center px-4 py-12"
-      style={{ background: "#0A0A0A" }}
-    >
-      {/* Background glow */}
-      <div
-        className="fixed inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 50% 30% at 50% 0%, rgba(201,168,76,0.08) 0%, transparent 70%)",
-        }}
-      />
+    <AppShell>
+      {/* Page header */}
+      <div className="px-4 pt-4 pb-3 flex items-center gap-3" style={{ borderBottom: "1px solid #1a1a1a" }}>
+        <Link href="/" className="tap-target w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: "#141414" }}>
+          <svg className="w-5 h-5" fill="none" stroke="#C9A84C" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </Link>
+        <div>
+          <h1 className="text-base font-black tracking-wide" style={{ fontFamily: "var(--font-cinzel)", color: "#C9A84C" }}>
+            AKUN SAYA
+          </h1>
+          <p className="text-[10px] text-gray-500">Masuk atau buat akun baru</p>
+        </div>
+      </div>
 
-      {/* Back button */}
-      <Link
-        href="/"
-        className="self-start max-w-md w-full mb-6 flex items-center gap-2 text-sm text-gray-400 hover:text-[#C9A84C] transition-colors"
-      >
-        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-        </svg>
-        Kembali ke Beranda
-      </Link>
-
+      <div className="px-4 py-4">
       <div
-        className="w-full max-w-md rounded-3xl overflow-hidden"
+        className="w-full rounded-3xl overflow-hidden"
         style={{ border: "1px solid #242424" }}
       >
         {/* Header */}
@@ -293,10 +286,10 @@ export default function LoginPage() {
         </div>
       </div>
 
-      <p className="text-xs text-gray-600 mt-6 text-center max-w-sm">
-        Dengan mendaftar, Anda menyetujui syarat & ketentuan Arbani Tour dan
-        memberikan izin untuk dihubungi terkait paket perjalanan ibadah.
+      <p className="text-xs text-gray-600 mt-4 text-center">
+        Dengan mendaftar, Anda menyetujui syarat & ketentuan Arbani Tour.
       </p>
-    </div>
+      </div>
+    </AppShell>
   );
 }

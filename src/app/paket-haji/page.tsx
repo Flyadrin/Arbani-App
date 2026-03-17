@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Navbar from "@/components/Navbar";
+import AppShell from "@/components/AppShell";
 
 const hajiPackages = [
   {
@@ -110,65 +110,27 @@ function CheckIcon() {
 
 export default function PaketHajiPage() {
   return (
-    <div className="min-h-screen" style={{ background: "#0A0A0A" }}>
-      <Navbar />
-
-      {/* Hero */}
-      <section className="relative px-4 pt-12 pb-10 text-center overflow-hidden">
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: "radial-gradient(ellipse 60% 40% at 50% 0%, rgba(201,168,76,0.1) 0%, transparent 70%)",
-          }}
-        />
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-[#C9A84C] transition-colors mb-6"
-        >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <AppShell>
+      {/* Page header */}
+      <div className="px-4 pt-4 pb-3 flex items-center gap-3" style={{ borderBottom: "1px solid #1a1a1a" }}>
+        <Link href="/" className="tap-target w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: "#141414" }}>
+          <svg className="w-5 h-5" fill="none" stroke="#C9A84C" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
-          Kembali
         </Link>
-        <p className="text-xs tracking-widest uppercase mb-2" style={{ color: "#C9A84C" }}>
-          Arbani Tour
-        </p>
-        <h1
-          className="text-3xl md:text-4xl font-black mb-3 tracking-wide"
-          style={{
-            fontFamily: "var(--font-cinzel)",
-            background: "linear-gradient(135deg, #A07830, #C9A84C, #E8C96D)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-          }}
-        >
-          PAKET HAJI
-        </h1>
-        <p className="text-gray-400 max-w-md mx-auto text-sm leading-relaxed">
-          Wujudkan rukun Islam kelima Anda bersama Arbani Tour. Kami menyediakan
-          paket haji khusus, furoda, dan reguler dengan pelayanan terbaik.
-        </p>
-
-        {/* Kemenag badge */}
-        <div
-          className="inline-flex items-center gap-2 mt-4 px-4 py-2 rounded-full"
-          style={{
-            background: "rgba(201,168,76,0.1)",
-            border: "1px solid rgba(201,168,76,0.3)",
-          }}
-        >
-          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" style={{ color: "#C9A84C" }}>
-            <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-          </svg>
-          <span className="text-xs font-semibold" style={{ color: "#C9A84C" }}>
-            Terdaftar Resmi Kementerian Agama RI
-          </span>
+        <div className="flex-1">
+          <h1 className="text-base font-black tracking-wide" style={{ fontFamily: "var(--font-cinzel)", color: "#C9A84C" }}>
+            PAKET HAJI
+          </h1>
+          <p className="text-[10px] text-gray-500">Haji khusus, furoda & reguler</p>
         </div>
-      </section>
+        <span className="text-[10px] px-2 py-1 rounded-full font-semibold" style={{ background: "rgba(201,168,76,0.1)", color: "#C9A84C", border: "1px solid rgba(201,168,76,0.2)" }}>
+          ✓ Kemenag RI
+        </span>
+      </div>
 
       {/* How it works */}
-      <section className="px-4 mb-10 max-w-5xl mx-auto">
+      <div className="px-4 mb-6 mt-4">
         <div className="text-center mb-6">
           <h2 className="text-xl font-bold" style={{ fontFamily: "var(--font-cinzel)", color: "#ffffff" }}>
             Proses Pendaftaran
@@ -196,10 +158,10 @@ export default function PaketHajiPage() {
             </div>
           ))}
         </div>
-      </section>
+      </div>
 
       {/* Packages */}
-      <section className="px-4 pb-12 max-w-5xl mx-auto">
+      <div className="px-4 pb-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {hajiPackages.map((pkg) => (
             <div
@@ -323,7 +285,7 @@ export default function PaketHajiPage() {
             </div>
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </AppShell>
   );
 }
