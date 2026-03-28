@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
 :root {
+  --font-cinzel: 'Cinzel', Georgia, serif;
+  --font-lato: 'Lato', system-ui, sans-serif;
   --gold: #C9A84C;
   --gold-light: #E8C96D;
   --gold-dark: #A07830;
@@ -167,4 +169,114 @@ input:focus, textarea:focus {
 
 .page-in {
   animation: pageIn 0.25s ease forwards;
+}
+
+/* Dashboard styles */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 16px;
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  background: #141414;
+  border: 1px solid #242424;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Print styles for Kwitansi & Siskopatuh */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .print-area, .print-area * {
+    visibility: visible !important;
+  }
+  .print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: white !important;
+    color: black !important;
+    padding: 24px;
+  }
+}
+
+/* Custom scrollbar for dashboard */
+.dash-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.dash-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.dash-scroll::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 2px;
+}
+
+/* Camera viewfinder */
+.camera-viewfinder {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.camera-viewfinder video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Checkbox styling */
+.custom-checkbox {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #333;
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+  position: relative;
+}
+.custom-checkbox:checked {
+  background: #C9A84C;
+  border-color: #C9A84C;
+}
+.custom-checkbox:checked::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 6px;
+  height: 10px;
+  border: solid #0A0A0A;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
 }
