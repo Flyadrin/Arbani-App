@@ -75,24 +75,34 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="app-shell">
-      {/* Status Bar */}
-      <div className="status-bar flex items-end justify-between px-5 pb-2">
+      {/* Top Navigation Bar */}
+      <div className="nav-bar flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Image src="/logo.jpg" alt="Arbani Tour" width={20} height={20} className="rounded-full opacity-80" />
-          <span className="text-xs font-semibold tracking-wider" style={{ color: "#C9A84C", fontFamily: "var(--font-cinzel)" }}>
+          <Image src="/logo.jpg" alt="Arbani Tour" width={28} height={28} className="rounded-full" />
+          <span className="text-sm font-semibold tracking-wider" style={{ color: "#C9A84C", fontFamily: "var(--font-cinzel)" }}>
             ARBANI TOUR
           </span>
         </div>
-        {/* Status icons */}
-        <div className="flex items-center gap-1.5">
+        {/* Desktop nav links */}
+        <nav className="hidden md:flex items-center gap-6">
+          {tabs.map((tab) => {
+            const isActive = tab.href === "/" ? pathname === "/" : pathname.startsWith(tab.href);
+            return (
+              <button
+                key={tab.id}
+                onClick={() => router.push(tab.href)}
+                className="text-sm font-medium transition-colors"
+                style={{ color: isActive ? "#C9A84C" : "#888" }}
+              >
+                {tab.label}
+              </button>
+            );
+          })}
+        </nav>
+        {/* Mobile: minimal icons */}
+        <div className="flex md:hidden items-center gap-1.5">
           <svg className="w-3.5 h-3.5 text-white opacity-80" fill="currentColor" viewBox="0 0 24 24">
             <path d="M1.5 8.5C5.5 4 18.5 4 22.5 8.5M5 12C7.5 9 16.5 9 19 12M8.5 15.5C10 14 14 14 15.5 15.5M12 19h.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" fill="none"/>
-          </svg>
-          <svg className="w-3.5 h-3.5 text-white opacity-80" fill="currentColor" viewBox="0 0 20 20">
-            <rect x="1" y="6" width="3" height="12" rx="1" />
-            <rect x="5.5" y="4" width="3" height="14" rx="1" />
-            <rect x="10" y="2" width="3" height="16" rx="1" />
-            <rect x="14.5" y="0" width="3" height="18" rx="1" opacity="0.4" />
           </svg>
           <svg className="w-4 h-3.5 text-white opacity-80" viewBox="0 0 24 12" fill="none">
             <rect x="0.5" y="0.5" width="20" height="11" rx="2" stroke="currentColor" strokeOpacity="0.5" />
@@ -104,11 +114,13 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
       {/* Screen content */}
       <div className="screen-content page-in">
-        {children}
+        <div className="content-container">
+          {children}
+        </div>
       </div>
 
-      {/* Bottom Tab Bar */}
-      <div className="tab-bar">
+      {/* Bottom Tab Bar - mobile only */}
+      <div className="tab-bar md:hidden">
         <div className="flex items-center">
           {tabs.map((tab) => {
             const isActive = tab.href === "/" ? pathname === "/" : pathname.startsWith(tab.href);

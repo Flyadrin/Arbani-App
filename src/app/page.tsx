@@ -41,7 +41,7 @@ export default function Home() {
   return (
     <AppShell>
       {/* Hero */}
-      <div className="relative px-4 pt-5 pb-4">
+      <div className="relative px-4 md:px-8 lg:px-12 pt-5 pb-4">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -51,9 +51,9 @@ export default function Home() {
         {/* Profile row */}
         <div className="flex items-center justify-between mb-5">
           <div>
-            <p className="text-xs text-gray-500 mb-0.5">Selamat datang di</p>
+            <p className="text-xs md:text-sm text-gray-500 mb-0.5">Selamat datang di</p>
             <h1
-              className="text-xl font-black tracking-wide"
+              className="text-xl md:text-3xl font-black tracking-wide"
               style={{
                 fontFamily: "var(--font-cinzel)",
                 background: "linear-gradient(135deg, #A07830, #C9A84C, #E8C96D)",
@@ -64,7 +64,7 @@ export default function Home() {
             >
               ARBANI TOUR
             </h1>
-            <p className="text-xs text-gray-500 tracking-widest">Biro Terpercaya Zona Nyaman</p>
+            <p className="text-xs md:text-sm text-gray-500 tracking-widest">Biro Terpercaya Zona Nyaman</p>
           </div>
           <Link href="/login" className="tap-target">
             <div
@@ -83,7 +83,7 @@ export default function Home() {
 
         {/* Hero banner */}
         <div
-          className="rounded-3xl p-5 mb-4 relative overflow-hidden"
+          className="rounded-3xl p-5 md:p-8 mb-4 relative overflow-hidden"
           style={{
             background: "linear-gradient(135deg, #1a1200 0%, #0d0d00 100%)",
             border: "1px solid rgba(201,168,76,0.25)",
@@ -91,25 +91,25 @@ export default function Home() {
           }}
         >
           <div
-            className="absolute right-4 top-1/2 -translate-y-1/2 opacity-20"
+            className="absolute right-4 md:right-12 top-1/2 -translate-y-1/2 opacity-20"
             style={{ fontSize: "80px", lineHeight: 1 }}
           >
             🕌
           </div>
-          <p className="text-xs tracking-widest uppercase mb-1.5" style={{ color: "#C9A84C" }}>
+          <p className="text-xs md:text-sm tracking-widest uppercase mb-1.5" style={{ color: "#C9A84C" }}>
             Bismillahirrahmanirrahim
           </p>
-          <h2 className="text-lg font-bold text-white mb-1.5 leading-snug">
+          <h2 className="text-lg md:text-2xl font-bold text-white mb-1.5 leading-snug">
             Wujudkan Perjalanan<br />
             <span style={{ color: "#C9A84C" }}>Ibadah Impian Anda</span>
           </h2>
-          <p className="text-xs text-gray-400 leading-relaxed mb-4 max-w-[200px]">
+          <p className="text-xs md:text-sm text-gray-400 leading-relaxed mb-4 max-w-[300px]">
             Umroh & haji nyaman, amanah, dan berkesan bersama Arbani Tour.
           </p>
           <div className="flex gap-2">
             <Link
               href="/paket-umroh"
-              className="tap-target px-4 py-2 rounded-full text-xs font-bold"
+              className="tap-target px-4 md:px-6 py-2 md:py-2.5 rounded-full text-xs md:text-sm font-bold"
               style={{
                 background: "linear-gradient(135deg, #A07830, #C9A84C)",
                 color: "#0A0A0A",
@@ -121,7 +121,7 @@ export default function Home() {
               href="https://wa.me/6281129064120"
               target="_blank"
               rel="noopener noreferrer"
-              className="tap-target px-4 py-2 rounded-full text-xs font-bold border"
+              className="tap-target px-4 md:px-6 py-2 md:py-2.5 rounded-full text-xs md:text-sm font-bold border"
               style={{ borderColor: "rgba(201,168,76,0.4)", color: "#C9A84C" }}
             >
               WhatsApp
@@ -130,37 +130,37 @@ export default function Home() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-4 gap-2 mb-5">
+        <div className="grid grid-cols-4 gap-2 md:gap-4 mb-5">
           {stats.map((s) => (
             <div
               key={s.value}
-              className="rounded-2xl py-3 text-center"
+              className="rounded-2xl py-3 md:py-4 text-center"
               style={{ background: "#141414", border: "1px solid #1e1e1e" }}
             >
               <p
-                className="text-sm font-black"
+                className="text-sm md:text-lg font-black"
                 style={{ fontFamily: "var(--font-cinzel)", color: "#C9A84C" }}
               >
                 {s.value}
               </p>
-              <p className="text-[9px] text-gray-500 mt-0.5">{s.label}</p>
+              <p className="text-[9px] md:text-xs text-gray-500 mt-0.5">{s.label}</p>
             </div>
           ))}
         </div>
       </div>
 
       {/* Menu section */}
-      <div className="px-4 mb-4">
+      <div className="px-4 md:px-8 lg:px-12 mb-4">
         <div className="flex items-center justify-between mb-3">
-          <p className="text-sm font-bold text-white">Layanan Kami</p>
+          <p className="text-sm md:text-base font-bold text-white">Layanan Kami</p>
           <span className="text-xs text-gray-500">Pilih kategori</span>
         </div>
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col md:flex-row gap-3">
           {menuItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="card-hover flex items-center gap-4 rounded-2xl px-4 py-4"
+              className="card-hover flex items-center gap-4 rounded-2xl px-4 py-4 md:flex-1"
               style={{ background: item.bg, border: "1px solid rgba(201,168,76,0.15)" }}
             >
               <div
@@ -170,7 +170,7 @@ export default function Home() {
                 {item.emoji}
               </div>
               <div className="flex-1 min-w-0">
-                <p className="font-bold text-sm text-white">{item.title}</p>
+                <p className="font-bold text-sm md:text-base text-white">{item.title}</p>
                 <p className="text-xs text-gray-400 mt-0.5 leading-relaxed whitespace-pre-line">
                   {item.subtitle}
                 </p>
@@ -195,9 +195,9 @@ export default function Home() {
       </div>
 
       {/* Why us */}
-      <div className="px-4 mb-4">
-        <p className="text-sm font-bold text-white mb-3">Mengapa Arbani Tour?</p>
-        <div className="grid grid-cols-2 gap-2">
+      <div className="px-4 md:px-8 lg:px-12 mb-4">
+        <p className="text-sm md:text-base font-bold text-white mb-3">Mengapa Arbani Tour?</p>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3">
           {[
             { icon: "🤝", title: "Amanah & Resmi", desc: "Terdaftar Kemenag RI" },
             { icon: "✈️", title: "Tepat Waktu", desc: "Keberangkatan terjamin" },
@@ -223,24 +223,24 @@ export default function Home() {
       <TestimonialSlider />
 
       {/* Contact CTA */}
-      <div className="px-4 pb-6">
+      <div className="px-4 md:px-8 lg:px-12 pb-6">
         <div
-          className="rounded-3xl p-5"
+          className="rounded-3xl p-5 md:p-8"
           style={{
             background: "linear-gradient(135deg, #1a1200, #141414)",
             border: "1px solid rgba(201,168,76,0.2)",
           }}
         >
-          <p className="text-sm font-bold text-white mb-1">Siap Berangkat? 🤲</p>
-          <p className="text-xs text-gray-400 mb-4 leading-relaxed">
+          <p className="text-sm md:text-lg font-bold text-white mb-1">Siap Berangkat? 🤲</p>
+          <p className="text-xs md:text-sm text-gray-400 mb-4 leading-relaxed">
             Konsultasi gratis dengan tim kami. Tersedia setiap hari.
           </p>
-          <div className="flex gap-2">
+          <div className="flex gap-2 md:max-w-md">
             <a
               href="https://wa.me/6281129064120"
               target="_blank"
               rel="noopener noreferrer"
-              className="tap-target flex-1 py-3 rounded-2xl text-xs font-bold text-center flex items-center justify-center gap-1.5"
+              className="tap-target flex-1 py-3 rounded-2xl text-xs md:text-sm font-bold text-center flex items-center justify-center gap-1.5"
               style={{ background: "#25D366", color: "#fff" }}
             >
               <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
@@ -250,7 +250,7 @@ export default function Home() {
             </a>
             <a
               href="tel:0247601577"
-              className="tap-target flex-1 py-3 rounded-2xl text-xs font-bold text-center border"
+              className="tap-target flex-1 py-3 rounded-2xl text-xs md:text-sm font-bold text-center border"
               style={{ borderColor: "rgba(201,168,76,0.4)", color: "#C9A84C" }}
             >
               📞 Telepon
@@ -260,12 +260,12 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <div className="px-4 pb-4 text-center">
+      <div className="px-4 md:px-8 pb-4 text-center">
         <Image src="/logo.jpg" alt="Arbani Tour" width={32} height={32} className="rounded-full mx-auto mb-2 opacity-40" />
-        <p className="text-[10px] text-gray-600">
+        <p className="text-[10px] md:text-xs text-gray-600">
           PT. Arbani Madinah Wisata · Jl. Pamularsih Raya No. 104, Semarang
         </p>
-        <p className="text-[10px] text-gray-700 mt-1">© 2025 Arbani Tour</p>
+        <p className="text-[10px] md:text-xs text-gray-700 mt-1">© 2025 Arbani Tour</p>
       </div>
     </AppShell>
   );

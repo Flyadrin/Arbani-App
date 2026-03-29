@@ -33,47 +33,35 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
-/* Phone app shell */
+/* App shell - responsive */
 .app-shell {
   display: flex;
   flex-direction: column;
-  height: 100dvh;
-  max-width: 430px;
-  margin: 0 auto;
+  min-height: 100dvh;
   position: relative;
   background: var(--black);
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
-/* Desktop: show phone frame */
-@media (min-width: 480px) {
-  body {
-    background: #050505;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100dvh;
-  }
-
+/* Desktop: full width, no phone frame */
+@media (min-width: 768px) {
   .app-shell {
-    height: 92dvh;
-    max-height: 900px;
-    border-radius: 44px;
-    box-shadow:
-      0 0 0 10px #1a1a1a,
-      0 0 0 12px #0d0d0d,
-      0 40px 120px rgba(0,0,0,0.8),
-      inset 0 0 0 1px rgba(255,255,255,0.06);
-    overflow: hidden;
+    max-width: 100%;
   }
 }
 
-/* Status bar */
-.status-bar {
-  height: max(var(--sat), 44px);
+/* Navigation bar (replaces status-bar on desktop) */
+.nav-bar {
   flex-shrink: 0;
   background: var(--black);
-  padding-top: var(--sat);
+  padding: 12px 16px;
+  border-bottom: 1px solid #1e1e1e;
+}
+
+@media (min-width: 768px) {
+  .nav-bar {
+    padding: 16px 40px;
+  }
 }
 
 /* Bottom tab bar */
@@ -86,6 +74,12 @@ body {
   -webkit-backdrop-filter: blur(20px);
 }
 
+@media (min-width: 768px) {
+  .tab-bar {
+    padding-bottom: 8px;
+  }
+}
+
 /* Scrollable screen area */
 .screen-content {
   flex: 1;
@@ -93,6 +87,19 @@ body {
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-y: contain;
+}
+
+/* Responsive content container */
+.content-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .screen-content {
+    padding: 0;
+  }
 }
 
 /* Touch tap states */
@@ -148,10 +155,12 @@ body {
   background-clip: text;
 }
 
-/* Hide scrollbars */
-::-webkit-scrollbar {
-  width: 0;
-  display: none;
+/* Hide scrollbars on mobile only */
+@media (max-width: 767px) {
+  ::-webkit-scrollbar {
+    width: 0;
+    display: none;
+  }
 }
 
 /* Input focus */
